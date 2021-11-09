@@ -4,6 +4,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Core;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
 namespace DMXamarin.ViewModels
@@ -11,6 +13,7 @@ namespace DMXamarin.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
+        MediaElement mediaElement;
 
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
@@ -77,7 +80,14 @@ namespace DMXamarin.ViewModels
             if (item == null)
                 return;
 
-            // This will push the ItemDetailPage onto the navigation stack
+            //mediaElement = new MediaElement();
+            var fileResult = await App.PickAndShow(Xamarin.Essentials.PickOptions.Default);
+            //item.Text = fileResult.FileName;
+            //item.Description = fileResult.FullPath;
+            //mediaElement.Source = MediaSource.FromFile(fileResult.FullPath + Environment.NewLine + fileResult.FileName);
+            //mediaElement.Play();
+
+            //// This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
     }

@@ -16,7 +16,7 @@ namespace DMXamarin.ViewModels
 
         public string Text
         {
-            get => text;
+            get => text ?? "";
             set => SetProperty(ref text, value);
         }
 
@@ -30,7 +30,7 @@ namespace DMXamarin.ViewModels
         {
             get
             {
-                return itemId;
+                return itemId ?? "null";
             }
             set
             {
@@ -44,9 +44,9 @@ namespace DMXamarin.ViewModels
             try
             {
                 var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                Id = item.Id ?? "null";
+                Text = item.Text ?? "null";
+                Description = item.Description ?? "null";
             }
             catch (Exception)
             {

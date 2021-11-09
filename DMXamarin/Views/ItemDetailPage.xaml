@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
              x:Class="DMXamarin.Views.ItemDetailPage"
              Title="{Binding Title}">
-
-    <StackLayout Spacing="20" Padding="15">
+    <Grid>
+        <behaviors:MediaElement x:Name="mediaElement" PropertyChanged="mediaElement_PropertyChanged" Source=""/>
+        <StackLayout Spacing="20" Padding="15">
         <Label Text="Text:" FontSize="Medium" />
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Description}" FontSize="Small"/>
-    </StackLayout>
-    
+        <Label Text="{Binding Description}" FontSize="Small" x:Name="one"/>
+        <Button x:Name="btnPlay" Text="Play" Clicked="btnPlay_Clicked"></Button>
+        </StackLayout>
+     </Grid>
 </ContentPage>

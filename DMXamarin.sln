@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMXamarin.Android", "DMXama
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMXamarin.iOS", "DMXamarin.iOS\DMXamarin.iOS.csproj", "{2B8C4D0C-56D9-4D72-80D5-28715CC9A212}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DMXamarin", "DMXamarin\DMXamarin.csproj", "{9F7808F9-A2D7-4CE0-86F2-0483EBC31FEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DMXamarin", "DMXamarin\DMXamarin.csproj", "{9F7808F9-A2D7-4CE0-86F2-0483EBC31FEE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaStreamer.Domain", "..\MediaStreamer.Domain\MediaStreamer.Domain.csproj", "{DB7A6723-7AA6-490C-86B5-627F74A2CB17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,30 @@ Global
 		{9F7808F9-A2D7-4CE0-86F2-0483EBC31FEE}.Release|x86.ActiveCfg = Release|Any CPU
 		{9F7808F9-A2D7-4CE0-86F2-0483EBC31FEE}.Release|x86.Build.0 = Release|Any CPU
 		{9F7808F9-A2D7-4CE0-86F2-0483EBC31FEE}.Release|x86.Deploy.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|ARM.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|x64.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Debug|x86.Build.0 = Debug|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|ARM.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|ARM.Build.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|iPhone.Build.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|x64.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|x64.Build.0 = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|x86.ActiveCfg = Release|Any CPU
+		{DB7A6723-7AA6-490C-86B5-627F74A2CB17}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
