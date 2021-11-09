@@ -35,7 +35,7 @@ namespace DMXamarin
         protected override void OnResume()
         {
         }
-        public static async Task<FileResult> PickAndShow(PickOptions options)
+        public static async Task<string> PickAndShow(PickOptions options)
         {
             try
             {
@@ -50,7 +50,8 @@ namespace DMXamarin
                         //var mediaStream = new StreamMediaSource(stream);
                         //mediaStream.Stream = mediaStream;
                         //mediaElement.Source = mediaStream;
-                        mediaElement.Source = result.FullPath;
+                        return result.FullPath;
+                        mediaElement.Source = result.FileName;
                         bool exists = File.Exists(result.FullPath);
                         //FileData fileData = await CrossFilePicker.Current.PickFile();
                         //var result = new FileResult(fileData.FileName);
@@ -64,7 +65,7 @@ namespace DMXamarin
                     }
                 }
 
-                return result;
+                return result.FullPath;
             }
             catch (Exception ex)
             {

@@ -49,11 +49,14 @@ namespace DMXamarin.ViewModels
 
         private async void OnSave()
         {
+            var fileResult = await App.PickAndShow(Xamarin.Essentials.PickOptions.Default);
+            //item.Text = fileResult.FileName;
+            //item.Description = fileResult.FullPath;
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Description = Description
+                Description = fileResult
             };
 
             await DataStore.AddItemAsync(newItem);

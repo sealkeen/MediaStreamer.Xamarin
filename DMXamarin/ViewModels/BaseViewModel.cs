@@ -22,13 +22,8 @@ namespace DMXamarin.ViewModels
         string title = string.Empty;
         public string Title
         {
-            get { return title ?? "null"; }
-            set {
-                if (title == null)
-                    title = "null";
-                else
-                    SetProperty(ref title, value); 
-            }
+            get { return title; }
+            set { SetProperty(ref title, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

@@ -3,6 +3,7 @@ using DMXamarin.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.Core;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -79,16 +80,17 @@ namespace DMXamarin.ViewModels
         {
             if (item == null)
                 return;
-
-            //mediaElement = new MediaElement();
-            var fileResult = await App.PickAndShow(Xamarin.Essentials.PickOptions.Default);
-            //item.Text = fileResult.FileName;
-            //item.Description = fileResult.FullPath;
-            //mediaElement.Source = MediaSource.FromFile(fileResult.FullPath + Environment.NewLine + fileResult.FileName);
-            //mediaElement.Play();
-
-            //// This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            if (File.Exists(item.Description))
+            {
+                //App.mediaElement = new MediaElement();
+                App.mediaElement.Source = MediaSource.FromFile(item.Description);
+                App.mediaElement.Play();
+            }
+            else
+            {
+                //// This will push the ItemDetailPage onto the navigation stack
+                await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            }
         }
     }
 }
