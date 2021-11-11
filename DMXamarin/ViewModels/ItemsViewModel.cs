@@ -1,5 +1,6 @@
 ﻿using DMXamarin.Models;
 using DMXamarin.Views;
+using MediaManager;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -83,8 +84,9 @@ namespace DMXamarin.ViewModels
             if (File.Exists(item.Description))
             {
                 //App.mediaElement = new MediaElement();
-                App.mediaElement.Source = MediaSource.FromFile(item.Description);
-                App.mediaElement.Play();
+                await CrossMediaManager.Current.Play($"{item.Description}");
+                //App.mediaElement.Source = MediaSource.FromFile(item.Description);
+                //App.mediaElement.Play();
             }
             else
             {

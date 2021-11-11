@@ -1,5 +1,6 @@
 ﻿using DMXamarin.Services;
 using DMXamarin.Views;
+using MediaManager;
 //using Plugin.FilePicker;
 //using Plugin.FilePicker.Abstractions;
 using System;
@@ -18,6 +19,7 @@ namespace DMXamarin
         public static MediaElement mediaElement;
         public App()
         {
+            CrossMediaManager.Current.Init();
             InitializeComponent();
             mediaElement = new MediaElement();
             DependencyService.Register<MockDataStore>();
