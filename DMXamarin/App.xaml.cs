@@ -1,6 +1,10 @@
-﻿using DMXamarin.Services;
+﻿using DMXamarin.Models;
+using DMXamarin.Services;
 using DMXamarin.Views;
 using MediaManager;
+using MediaStreamer;
+using MediaStreamer.DataAccess.NetStandard;
+using MediaStreamer.IO;
 //using Plugin.FilePicker;
 //using Plugin.FilePicker.Abstractions;
 using System;
@@ -16,12 +20,15 @@ namespace DMXamarin
 {
     public partial class App : Application
     {
-        public static MediaElement mediaElement;
+        public static FileManipulator FileManipulator { get; set; }
+        public static NetCoreDBRepository NetCoreDBRepository;
         public App()
         {
-            CrossMediaManager.Current.Init();
             InitializeComponent();
-            mediaElement = new MediaElement();
+            NetCoreDBRepository = new NetCoreDBRepository();
+            NetCoreDBRepository.DB = new DMEntitiesContext();
+            FileManipulator = new FileManipulator(NetCoreDBRepository);
+            CrossMediaManager.Current.Init();
             DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
@@ -37,6 +44,24 @@ namespace DMXamarin
         protected override void OnResume()
         {
         }
+
+        public static async Task<bool> OpenFileAndSaveToStorage()
+        {
+            var fileResult = await App.PickAndShow(Xamarin.Essentials.PickOptions.Default);
+            if (fileResult == null)
+                return false;
+            Item newItem = new Item()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Text = "New Song",
+                Description = fileResult,
+                FilePath = fileResult
+            };
+            IDataStore<Item> DataStore = DependencyService.Get<IDataStore<Item>>();
+            DataStore.AddItem(newItem);
+            return true;
+        }
+
         public static async Task<string> PickAndShow(PickOptions options)
         {
             try
@@ -44,26 +69,12 @@ namespace DMXamarin
                 var result = await FilePicker.PickAsync(options);
                 if (result != null)
                 {
-                    //Text = $"File Name: {result.FileName}";
                     if (result.FileName.EndsWith("mp3", StringComparison.OrdinalIgnoreCase) ||
                         result.FileName.EndsWith("wav", StringComparison.OrdinalIgnoreCase))
                     {
-                        //var stream = await result.OpenReadAsync();
-                        //var mediaStream = new StreamMediaSource(stream);
-                        //mediaStream.Stream = mediaStream;
-                        //mediaElement.Source = mediaStream;
-                        return result.FullPath;
-                        mediaElement.Source = result.FileName;
-                        bool exists = File.Exists(result.FullPath);
-                        //FileData fileData = await CrossFilePicker.Current.PickFile();
-                        //var result = new FileResult(fileData.FileName);
-                        //if (fileData == null)
-                        //    return result; // user canceled file picking
-                        //mediaElement.Source = MediaSource.FromFile(fileData.FileName);
-                        //mediaElement.Play();
 
-                        mediaElement.Play();
-                        //.FromStream(() => stream);
+                        return result.FullPath;
+                        bool exists = File.Exists(result.FullPath);
                     }
                 }
 

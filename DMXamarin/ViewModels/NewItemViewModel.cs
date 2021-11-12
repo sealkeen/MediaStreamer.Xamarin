@@ -1,4 +1,5 @@
 ﻿using DMXamarin.Models;
+using DMXamarin.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -50,18 +51,15 @@ namespace DMXamarin.ViewModels
         private async void OnSave()
         {
             var fileResult = await App.PickAndShow(Xamarin.Essentials.PickOptions.Default);
-            //item.Text = fileResult.FileName;
-            //item.Description = fileResult.FullPath;
             Item newItem = new Item()
             {
                 Id = Guid.NewGuid().ToString(),
                 Text = Text,
-                Description = fileResult
+                Description = fileResult,
+                FilePath = fileResult
             };
-
-            await DataStore.AddItemAsync(newItem);
-
-            // This will pop the current page off the navigation stack
+            IDataStore<Item> DataStore = DependencyService.Get<IDataStore<Item>>();
+            DataStore.AddItem(newItem);
             await Shell.Current.GoToAsync("..");
         }
     }

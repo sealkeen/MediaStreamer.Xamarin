@@ -1,6 +1,9 @@
 ﻿using DMXamarin.Models;
+using MediaStreamer;
+using MediaStreamer.DataAccess.NetStandard;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,22 +15,39 @@ namespace DMXamarin.Services
 
         public MockDataStore()
         {
-            items = new List<Item>()
+            items = new List<Item>();
+            foreach (var item in App.NetCoreDBRepository.DB.GetCompositions())
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
-            };
+                items.Add(item.ToItem());
+            }
         }
 
         public async Task<bool> AddItemAsync(Item item)
         {
-            items.Add(item);
-
+            if (File.Exists(item.Description))
+            {
+                App.FileManipulator.DecomposeAudioFile(item.Description);
+                items.Add(item);
+            }
             return await Task.FromResult(true);
+        }
+
+        public bool AddItem(Item item)
+        {
+            try
+            {
+                if (File.Exists(item.FilePath))
+                {
+                    App.FileManipulator.DecomposeAudioFile(item.FilePath);
+                    item.Text = item.Artist?.ArtistName;
+                    item.Description = item?.CompositionName;
+                    items.Add(item);
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                return false;
+            }
         }
 
         public async Task<bool> UpdateItemAsync(Item item)
@@ -54,6 +74,11 @@ namespace DMXamarin.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
+            items.Clear();
+            foreach (var item in App.NetCoreDBRepository.DB.GetCompositions())
+            {
+                items.Add(item.ToItem());
+            }
             return await Task.FromResult(items);
         }
     }

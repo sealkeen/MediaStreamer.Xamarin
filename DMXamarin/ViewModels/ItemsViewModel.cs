@@ -15,11 +15,10 @@ namespace DMXamarin.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Item _selectedItem;
-        MediaElement mediaElement;
-
         public ObservableCollection<Item> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
+        public Command ClearCommand { get; }
         public Command<Item> ItemTapped { get; }
 
         public ItemsViewModel()
@@ -31,6 +30,7 @@ namespace DMXamarin.ViewModels
             ItemTapped = new Command<Item>(OnItemSelected);
 
             AddItemCommand = new Command(OnAddItem);
+            ClearCommand = new Command(OnClear);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -72,19 +72,27 @@ namespace DMXamarin.ViewModels
             }
         }
 
+        private async void OnClear(object obj)
+        {
+            App.NetCoreDBRepository.DB.Clear();
+        }
+
         private async void OnAddItem(object obj)
         {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
+            await App.OpenFileAndSaveToStorage();
+            await ExecuteLoadItemsCommand();
+            //await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
         async void OnItemSelected(Item item)
         {
             if (item == null)
                 return;
-            if (File.Exists(item.Description))
+            if (File.Exists(item.FilePath))
             {
                 //App.mediaElement = new MediaElement();
-                await CrossMediaManager.Current.Play($"{item.Description}");
+                if(item.FilePath != null)
+                    await CrossMediaManager.Current.Play($"{item.FilePath}");
                 //App.mediaElement.Source = MediaSource.FromFile(item.Description);
                 //App.mediaElement.Play();
             }

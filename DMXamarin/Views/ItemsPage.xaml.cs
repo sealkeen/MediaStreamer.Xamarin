@@ -21,7 +21,6 @@ namespace DMXamarin.Views
             InitializeComponent();
 
             BindingContext = _viewModel = new ItemsViewModel();
-            App.mediaElement = this.mediaElement;
         }
 
         protected override void OnAppearing()
