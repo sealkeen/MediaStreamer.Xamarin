@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaStreamer.TagEditor", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaStreamer.IO", "..\MediaStreamer.IO\MediaStreamer.IO.csproj", "{DB1C9425-392B-4781-A720-30D31EA2D6D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaStreamer.Exceptions", "..\MediaStreamer.Exceptions\MediaStreamer.Exceptions.csproj", "{BADA7EBE-856D-4FCF-8003-84C431EF607A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaStreamer.Exceptions", "..\MediaStreamer.Exceptions\MediaStreamer.Exceptions.csproj", "{BADA7EBE-856D-4FCF-8003-84C431EF607A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -307,5 +307,10 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {42B6DCA9-5F81-4425-9A81-9336FDC721D7}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = PrefixedHierarchical
 	EndGlobalSection
 EndGlobal

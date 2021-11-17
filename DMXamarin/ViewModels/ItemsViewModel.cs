@@ -5,6 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.Core;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -74,7 +75,12 @@ namespace DMXamarin.ViewModels
 
         private async void OnClear(object obj)
         {
-            App.NetCoreDBRepository.DB.Clear();
+            //TODO: check if not throws exception
+            await Task.Run(() => App.NetCoreDBRepository.DB.Clear());
+            App.StatusLabel.Text = $"ArtistGenresCount: {App.NetCoreDBRepository.DB.GetArtistGenres().Count()}\n" +
+                $"Artists count: {App.NetCoreDBRepository.DB.GetArtists().Count()}\n" +
+                $"GroupMembers count : {App.NetCoreDBRepository.DB.GetGroupMembers().Count()}";
+
         }
 
         private async void OnAddItem(object obj)

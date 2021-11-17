@@ -3,6 +3,7 @@ using DMXamarin.Services;
 using DMXamarin.Views;
 using MediaManager;
 using MediaStreamer;
+using MediaStreamer.Domain;
 using MediaStreamer.DataAccess.NetStandard;
 using MediaStreamer.IO;
 //using Plugin.FilePicker;
@@ -20,12 +21,13 @@ namespace DMXamarin
 {
     public partial class App : Application
     {
+        public static Label StatusLabel { get; set; }
         public static FileManipulator FileManipulator { get; set; }
-        public static NetCoreDBRepository NetCoreDBRepository;
+        public static DBRepository NetCoreDBRepository;
         public App()
         {
             InitializeComponent();
-            NetCoreDBRepository = new NetCoreDBRepository();
+            NetCoreDBRepository = new DBRepository();
             NetCoreDBRepository.DB = new DMEntitiesContext();
             FileManipulator = new FileManipulator(NetCoreDBRepository);
             CrossMediaManager.Current.Init();

@@ -15,8 +15,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="115"></RowDefinition>
+            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="65"></RowDefinition>
         </Grid.RowDefinitions>
         <!--
           x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
@@ -49,8 +49,8 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <Grid Grid.Row="1" HorizontalOptions="Center">
-            <ImageButton Source="Play_Pause_Unselected.png" BackgroundColor="White"/>
+        <Grid Grid.Row="1" WidthRequest="125" HorizontalOptions="Center">
+            <ImageButton Source="Play_Pause_Unselected.png" BackgroundColor="White" Clicked="ImageButton_Clicked"/>
         </Grid>
         <StackLayout Grid.Row="2">
             <Label x:Name="lblStatus">Loading completed.</Label>

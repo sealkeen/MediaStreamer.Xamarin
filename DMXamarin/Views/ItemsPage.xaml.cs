@@ -1,6 +1,7 @@
 ﻿using DMXamarin.Models;
 using DMXamarin.ViewModels;
 using DMXamarin.Views;
+using MediaManager;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,14 +20,19 @@ namespace DMXamarin.Views
         public ItemsPage()
         {
             InitializeComponent();
-
             BindingContext = _viewModel = new ItemsViewModel();
+            App.StatusLabel = lblStatus;
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
             _viewModel.OnAppearing();
+        }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            CrossMediaManager.Current.PlayPause();
         }
     }
 }
