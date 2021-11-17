@@ -80,7 +80,6 @@ namespace DMXamarin.ViewModels
             App.StatusLabel.Text = $"ArtistGenresCount: {App.NetCoreDBRepository.DB.GetArtistGenres().Count()}\n" +
                 $"Artists count: {App.NetCoreDBRepository.DB.GetArtists().Count()}\n" +
                 $"GroupMembers count : {App.NetCoreDBRepository.DB.GetGroupMembers().Count()}";
-
         }
 
         private async void OnAddComposition(object obj)
@@ -102,11 +101,11 @@ namespace DMXamarin.ViewModels
                 //App.mediaElement.Source = MediaSource.FromFile(item.Description);
                 //App.mediaElement.Play();
             }
-            else
-            {
+            //else
+            //{
                 //// This will push the ItemDetailPage onto the navigation stack
                 await Shell.Current.GoToAsync($"{nameof(CompositionDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
-            }
+            //}
         }
     }
 }

@@ -49,8 +49,18 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <Grid Grid.Row="1" WidthRequest="125" HorizontalOptions="Center">
-            <ImageButton Source="Play_Pause_Unselected.png" BackgroundColor="White" Clicked="ImageButton_Clicked"/>
+        <Grid Grid.Row="1" WidthRequest="125" HorizontalOptions="Fill">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0" BackgroundColor="Aquamarine" Source="Previous.png"/>
+            <ImageButton Grid.Column="1" x:Name="btnPlayPause" Source="Play_Pause_Unselected.png" 
+                         Released="btnPlayPause_Released"
+                         Unfocused="btnPlayPause_Unfocused"
+                         BackgroundColor="White" Clicked="btnPlayPause_Clicked"/>
+            <ImageButton Grid.Column="2" BackgroundColor="Aquamarine" Source="Next.png"/>
         </Grid>
         <StackLayout Grid.Row="2">
             <Label x:Name="lblStatus">Loading completed.</Label>
