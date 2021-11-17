@@ -38,7 +38,7 @@ namespace DMXamarin.Services
             {
                 if (File.Exists(item.FilePath))
                 {
-                    App.FileManipulator.DecomposeAudioFile(item.FilePath);
+                    App.FileManipulator.DecomposeAudioFile(item.FilePath); //error Action
                     item.Text = item.Artist?.ArtistName;
                     item.Description = item?.CompositionName;
                     items.Add(item);
