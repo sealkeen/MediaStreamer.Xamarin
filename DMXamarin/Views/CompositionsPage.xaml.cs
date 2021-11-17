@@ -13,14 +13,14 @@ using Xamarin.Forms.Xaml;
 
 namespace DMXamarin.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class CompositionsPage : ContentPage
     {
-        ItemsViewModel _viewModel;
+        CompositionsViewModel _viewModel;
 
-        public ItemsPage()
+        public CompositionsPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = new CompositionsViewModel();
             App.StatusLabel = lblStatus;
         }
 

@@ -31,7 +31,7 @@ namespace DMXamarin
             NetCoreDBRepository.DB = new DMEntitiesContext();
             FileManipulator = new FileManipulator(NetCoreDBRepository);
             CrossMediaManager.Current.Init();
-            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<CompositionStore>();
             MainPage = new AppShell();
         }
 

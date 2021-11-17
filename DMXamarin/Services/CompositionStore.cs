@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DMXamarin.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class CompositionStore : IDataStore<Item>
     {
         readonly List<Item> items;
 
-        public MockDataStore()
+        public CompositionStore()
         {
             items = new List<Item>();
             foreach (var item in App.NetCoreDBRepository.DB.GetCompositions())

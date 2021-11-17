@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace DMXamarin.ViewModels
 {
-    public class NewItemViewModel : BaseViewModel
+    public class NewCompositionViewModel : BaseViewModel
     {
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewCompositionViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);

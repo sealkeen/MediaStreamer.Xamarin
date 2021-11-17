@@ -13,38 +13,38 @@ using Xamarin.Forms;
 
 namespace DMXamarin.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class CompositionsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
+        private Item _selectedComposition;
+        public ObservableCollection<Item> Compositions { get; }
+        public Command LoadCompositionsCommand { get; }
+        public Command AddCompositionCommand { get; }
         public Command ClearCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public Command<Item> CompositionTapped { get; }
 
-        public ItemsViewModel()
+        public CompositionsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            Compositions = new ObservableCollection<Item>();
+            LoadCompositionsCommand = new Command(async () => await ExecuteLoadCompositionsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            CompositionTapped = new Command<Item>(OnCompositionSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+            AddCompositionCommand = new Command(OnAddComposition);
             ClearCommand = new Command(OnClear);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadCompositionsCommand()
         {
             IsBusy = true;
 
             try
             {
-                Items.Clear();
+                Compositions.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    Compositions.Add(item);
                 }
             }
             catch (Exception ex)
@@ -65,11 +65,11 @@ namespace DMXamarin.ViewModels
 
         public Item SelectedItem
         {
-            get => _selectedItem;
+            get => _selectedComposition;
             set
             {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
+                SetProperty(ref _selectedComposition, value);
+                OnCompositionSelected(value);
             }
         }
 
@@ -83,14 +83,14 @@ namespace DMXamarin.ViewModels
 
         }
 
-        private async void OnAddItem(object obj)
+        private async void OnAddComposition(object obj)
         {
             await App.OpenFileAndSaveToStorage();
-            await ExecuteLoadItemsCommand();
+            await ExecuteLoadCompositionsCommand();
             //await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
-        async void OnItemSelected(Item item)
+        async void OnCompositionSelected(Item item)
         {
             if (item == null)
                 return;
@@ -105,7 +105,7 @@ namespace DMXamarin.ViewModels
             else
             {
                 //// This will push the ItemDetailPage onto the navigation stack
-                await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+                await Shell.Current.GoToAsync($"{nameof(CompositionDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
             }
         }
     }

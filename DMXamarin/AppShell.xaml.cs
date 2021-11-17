@@ -11,8 +11,8 @@ namespace DMXamarin
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(CompositionDetailPage), typeof(CompositionDetailPage));
+            Routing.RegisterRoute(nameof(NewCompositionPage), typeof(NewCompositionPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

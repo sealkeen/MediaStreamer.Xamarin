@@ -8,14 +8,14 @@ using Xamarin.Forms.Xaml;
 
 namespace DMXamarin.Views
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewCompositionPage : ContentPage
     {
         public Item Item { get; set; }
 
-        public NewItemPage()
+        public NewCompositionPage()
         {
             InitializeComponent();
-            BindingContext = new NewItemViewModel();
+            BindingContext = new NewCompositionViewModel();
         }
     }
 }

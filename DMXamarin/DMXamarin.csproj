@@ -18,4 +18,16 @@
     <ProjectReference Include="..\..\MediaStreamer.IO\MediaStreamer.IO.csproj" />
     <ProjectReference Include="..\..\MediaStreamer.TagEditor\MediaStreamer.TagEditor.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\CompositionsPage.xaml.cs">
+      <DependentUpon>CompositionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CompositionDetailPage.xaml.cs">
+      <DependentUpon>CompositionDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewCompositionPage.xaml.cs">
+      <DependentUpon>NewCompositionPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

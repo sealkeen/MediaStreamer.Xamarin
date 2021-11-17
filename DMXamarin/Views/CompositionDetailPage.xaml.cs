@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace DMXamarin.Views
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class CompositionDetailPage : ContentPage
     {
-        public ItemDetailPage()
+        public CompositionDetailPage()
         {
             InitializeComponent();
             BindingContext = new ItemDetailViewModel();
