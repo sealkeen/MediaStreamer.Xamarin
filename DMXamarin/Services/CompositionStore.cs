@@ -1,6 +1,5 @@
 ﻿using DMXamarin.Models;
 using MediaStreamer;
-using MediaStreamer.DataAccess.NetStandard;
 using System;
 using System.Collections.Generic;
 using System.IO;

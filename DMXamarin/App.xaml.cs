@@ -4,7 +4,6 @@ using DMXamarin.Views;
 using MediaManager;
 using MediaStreamer;
 using MediaStreamer.Domain;
-using MediaStreamer.DataAccess.NetStandard;
 using MediaStreamer.IO;
 //using Plugin.FilePicker;
 //using Plugin.FilePicker.Abstractions;
@@ -21,22 +20,30 @@ namespace DMXamarin
 {
     public partial class App : Application
     {
-        public static Label StatusLabel { get; set; }
+        public static Label StatusLabel;
         public static FileManipulator FileManipulator { get; set; }
         public static DBRepository NetCoreDBRepository;
         public App()
         {
             InitializeComponent();
-            NetCoreDBRepository = new DBRepository();
-            NetCoreDBRepository.DB = new DMEntitiesContext();
-            FileManipulator = new FileManipulator(NetCoreDBRepository);
             CrossMediaManager.Current.Init();
             DependencyService.Register<CompositionStore>();
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            SetStatusText("Loading Database in progress...");
+            await Task.Run(() =>
+           FileManipulator = new FileManipulator(NetCoreDBRepository = new DBRepository() { DB = new DMEntitiesContext() })
+            );
+            SetStatusText("Database has just been loaded.");
+        }
+
+        public static void SetStatusText(string text)
+        {
+            if (StatusLabel != null)
+                StatusLabel.Text = text;
         }
 
         protected override void OnSleep()

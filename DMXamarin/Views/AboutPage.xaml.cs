@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DMXamarin.ViewModels;
 using MediaManager;
+using System.Threading.Tasks;
 
 namespace DMXamarin.Views
 {
@@ -13,9 +14,18 @@ namespace DMXamarin.Views
         public AboutPage()
         {
             InitializeComponent();
-            refreshView.BindingContext = _viewModel = new CompositionsViewModel();
+            App.StatusLabel = lblStatus;
+            //Task.Run(() => InitializeViewModel());
+            Task.Run(() => refreshView.BindingContext = _viewModel = new CompositionsViewModel());
             //contentView.Content = DMXamarin.Extensions.ContentPageToView.Convert(compositions);
         }
+
+        public async Task InitializeViewModel()
+        {
+            var task = Task.Run(() => refreshView.BindingContext = _viewModel = new CompositionsViewModel());
+            await task;
+        }
+
         private void btnPlayPause_Clicked(object sender, EventArgs e)
         {
             //btnPlayPause.Source = "Play_Pause_Selected.png";
@@ -30,6 +40,11 @@ namespace DMXamarin.Views
         private void btnPlayPause_Released(object sender, EventArgs e)
         {
             //btnPlayPause.Source = "Play_Pause_Unselected.png";
+        }
+
+        private void btnCompositions_Clicked(object sender, EventArgs e)
+        {
+            
         }
     }
 }

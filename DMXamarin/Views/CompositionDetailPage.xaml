@@ -5,10 +5,12 @@
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="15">
-        <Label Text="Text:" FontSize="Medium" />
+        <Label Text="The following composition is missing:"/>
+        <Label Text="Artist:" FontSize="Medium" />
         <Label Text="{Binding Text}" FontSize="Small"/>
-        <Label Text="Description:" FontSize="Medium" />
+        <Label Text="Title:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+        <Button x:Name="btnBrowseFile" Text="Browse File" Clicked="btnBrowseFile_Clicked"/>
     </StackLayout>
     
 </ContentPage>

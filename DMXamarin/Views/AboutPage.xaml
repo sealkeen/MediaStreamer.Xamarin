@@ -21,6 +21,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
@@ -31,7 +32,6 @@
         </StackLayout>
         <Grid Grid.Row="1"  Padding="12,8,12,8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="35" />
             </Grid.RowDefinitions>
@@ -68,28 +68,32 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <ImageButton Grid.Column="0" BackgroundColor="Aquamarine" Source="Previous.png"/>
+                <ImageButton Grid.Column="0" BackgroundColor="White" Source="Previous.png"/>
                 <ImageButton Grid.Column="1" x:Name="btnPlayPause" Source="Play_Pause_Unselected.png" 
                          Released="btnPlayPause_Released"
                          Unfocused="btnPlayPause_Unfocused"
                          BackgroundColor="White" Clicked="btnPlayPause_Clicked"/>
-                <ImageButton Grid.Column="2" BackgroundColor="Aquamarine" Source="Next.png"/>
-            </Grid>
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Text="Artists"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
-                <Button Grid.Column="1" Text="Compositions"
-                        Command="{Binding OpenWebCommand}"
-                        BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+                <ImageButton Grid.Column="2" BackgroundColor="White" Source="Next.png"/>
             </Grid>
         </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnArtists" Grid.Column="0" Text="Artists"
+                    Command="{Binding OpenWebCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+
+            <Button x:Name="btnCompositions" Grid.Column="1" Text="Compositions"
+                    Command="{Binding OpenWebCommand}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White" />
+        </Grid>
+        <StackLayout Grid.Row="3">
+            <Label x:Name="lblStatus">Loading completed.</Label>
+        </StackLayout>
     </Grid>
 
 </ContentPage>

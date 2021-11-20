@@ -101,11 +101,11 @@ namespace DMXamarin.ViewModels
                 //App.mediaElement.Source = MediaSource.FromFile(item.Description);
                 //App.mediaElement.Play();
             }
-            //else
-            //{
-                //// This will push the ItemDetailPage onto the navigation stack
+            else
+            {
+                // This will push the ItemDetailPage onto the navigation stack
                 await Shell.Current.GoToAsync($"{nameof(CompositionDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
-            //}
+            }
         }
     }
 }
