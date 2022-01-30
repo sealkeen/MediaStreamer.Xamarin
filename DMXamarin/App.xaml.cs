@@ -35,7 +35,7 @@ namespace DMXamarin
         {
             SetStatusText("Loading Database in progress...");
             await Task.Run(() =>
-           FileManipulator = new FileManipulator(NetCoreDBRepository = new DBRepository() { DB = new DMEntitiesContext() })
+           FileManipulator = new FileManipulator(NetCoreDBRepository = new DBRepository() { DB = new DMEntities() })
             );
             SetStatusText("Database has just been loaded.");
         }
